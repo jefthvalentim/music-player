@@ -1,0 +1,38 @@
+.player-container{
+    max-width: 1000px;
+    height: 200px;
+    margin: auto;
+    position: relative;
+    background: url(preview.png) no-repeat center center;
+    overflow: hidden;
+}
+
+audio{
+    width: 100%;
+}
+
+.player-line-start, .player-line-end{
+    display: block;
+    width: 2px;
+    height: 560px;
+    position: absolute;
+    top: -200px;
+}
+.player-line-start{
+    background: red;
+    left: 0;
+    cursor: move;
+}
+.player-line-end{
+    background: green;
+    right: -300px;
+}
+
+.player-controls{
+    max-width: 1000px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    background: rgba(0, 0, 0, .7);
+    width: 100%;
+}

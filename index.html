@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="player">
+        <div class="player-container">
+            <audio class="audio" src="ring.mp3"></audio>
+            <span class="player-line-start"></span>
+            <span class="player-line-end"></span>
+        </div> 
+        <div class="player-controls">
+            <button class="player-play">play</button>
+            <button class="player-select">Selecionar a partir daqui</button>
+        </div>
+    </div>  
+    
+    <script>
+        document.querySelector('.audio')
+        .addEventListener('timeupdate', e => {
+            let pos = e.target.currentTime / e.target.duration * 100;
+            document.querySelector('.player-line-start').style.left = `${pos}%`;
+        })
+        
+        document.querySelector('.player-container')
+        .addEventListener('click', function(e) {
+            let audio = document.querySelector('.audio')
+            
+            let playerWidth = this.getBoundingClientRect().width
+            let pos = (e.pageX - e.target.offsetLeft) / playerWidth * 100;
+            
+            audio.currentTime = audio.duration * pos / 100
+           
+            document.querySelector('.player-line-start').style.left = `${pos}%`;
+        })
+
+        document.querySelector('.player-play')
+        .addEventListener('click', function(e) {
+            let audio = document.querySelector('.audio')
+            
+            audio.play()
+        })
+
+        document.querySelector('.player-select')
+        .addEventListener('click', function(e) {  
+            let audio = document.querySelector('.audio')
+            let pos = audio.currentTime / audio.duration * 100;          
+            document.querySelector('.player-line-end').style.left = `${pos}%`;
+        })
+    </script>
+</body>
+</html>
